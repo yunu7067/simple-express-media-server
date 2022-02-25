@@ -20,6 +20,11 @@ const semsConfig = {
     port: 6379,
     url: 'localhost',
   },
+  storage: {
+    multer: {
+      dest: './mediafiles',
+    },
+  },
 };
 
 module.exports = semsConfig;

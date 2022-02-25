@@ -1,7 +1,7 @@
 import {ConfigErrorType} from '../type/ConfigErrorType';
 import type {ConfigType} from '../type/ConfigType';
 
-const checkPort = (port: number): boolean => {
+const checkPort = (port: unknown): boolean => {
   if (Number.isNaN(Number(port))) {
     return false;
   } else {

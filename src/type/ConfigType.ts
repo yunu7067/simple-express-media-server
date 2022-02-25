@@ -1,6 +1,13 @@
+import multer from 'multer';
+
 interface ServerConfigType {
   port?: number;
 }
+
+interface StorageConfigType {
+  multer: multer.Options;
+}
+
 interface DatabaseConfigType {
   type: string;
   host: string;
@@ -16,9 +23,10 @@ interface CacheConfigType {
 }
 
 interface ConfigType {
-  server?: ServerConfigType;
+  server: ServerConfigType;
   database: DatabaseConfigType;
   cache: CacheConfigType;
+  storage: StorageConfigType;
 }
 
 export type {ConfigType};

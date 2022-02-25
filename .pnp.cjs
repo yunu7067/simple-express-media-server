@@ -34,6 +34,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["@types/express", "npm:4.17.13"],\
+            ["@types/multer", "npm:1.4.7"],\
             ["@types/node", "npm:17.0.21"],\
             ["@yarnpkg/esbuild-plugin-pnp", "virtual:3ca81ade6e02e3c6883432ea40a64db82993e0da3bf1560ae5b391dfcea0f0c5068292a8f7f7ead98f5746fd4677fc088428c05c9e55b4b43dd2dd355ed46ec5#npm:2.0.1"],\
             ["@yarnpkg/pnpify", "npm:3.1.1"],\
@@ -328,6 +329,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-mime-npm-1.3.2-ea71878ab3-0493368244.zip/node_modules/@types/mime/",\
           "packageDependencies": [\
             ["@types/mime", "npm:1.3.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@types/multer", [\
+        ["npm:1.4.7", {\
+          "packageLocation": "./.yarn/cache/@types-multer-npm-1.4.7-df3819be8e-680cb0710a.zip/node_modules/@types/multer/",\
+          "packageDependencies": [\
+            ["@types/multer", "npm:1.4.7"],\
+            ["@types/express", "npm:4.17.13"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -3619,6 +3630,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["simple-express-media-server", "workspace:."],\
             ["@types/express", "npm:4.17.13"],\
+            ["@types/multer", "npm:1.4.7"],\
             ["@types/node", "npm:17.0.21"],\
             ["@yarnpkg/esbuild-plugin-pnp", "virtual:3ca81ade6e02e3c6883432ea40a64db82993e0da3bf1560ae5b391dfcea0f0c5068292a8f7f7ead98f5746fd4677fc088428c05c9e55b4b43dd2dd355ed46ec5#npm:2.0.1"],\
             ["@yarnpkg/pnpify", "npm:3.1.1"],\

@@ -1,18 +1,19 @@
 import path from 'path';
 import express from 'express';
-import {ifAllConfigOptionsIsNormal} from './runtime';
+import {config, ifAllConfigOptionsIsNormal} from './runtime';
 import {ConfigType} from './type';
 import {router} from './route';
 
-const configPath: string = path.resolve(require.main.path, '..', 'sems.config.js');
-const config: ConfigType = require(configPath);
-
 ifAllConfigOptionsIsNormal(config)
   .then(() => {
+    console.log(__dirname);
     const app = express();
     const port = config.server.port || 3000;
 
     app.use('/', router);
+    app.set('shared', {
+      config,
+    });
     app.listen(port, () => {
       console.log(`SEMS server on port ${port}!`);
     });
