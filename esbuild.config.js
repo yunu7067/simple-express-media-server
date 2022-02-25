@@ -3,9 +3,9 @@ const {build} = require('esbuild');
 
 build({
   plugins: [pnpPlugin()],
-  entryPoints: ['./src/index.ts'],
+  entryPoints: ['./src/app.ts'],
   bundle: true,
-  outfile: './build/bundle.js',
+  outfile: './bundle/app.js',
   minify: true,
   platform: 'node',
   target: 'es2020',

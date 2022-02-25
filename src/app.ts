@@ -1,8 +1,8 @@
+import path from 'path';
+import express from 'express';
 import {ifAllConfigOptionsIsNormal} from './runtime';
 import {ConfigType} from './type';
-
-const path = require('path');
-const express = require('express');
+import {router} from './route';
 
 const configPath: string = path.resolve(require.main.path, '..', 'sems.config.js');
 const config: ConfigType = require(configPath);
@@ -12,26 +12,7 @@ ifAllConfigOptionsIsNormal(config)
     const app = express();
     const port = config.server.port || 3000;
 
-    app.post('/upload', (req, res) => {
-      res.send('uplaod');
-    });
-
-    app.get('/download', (req, res) => {
-      res.send('downlaod');
-    });
-
-    app.delete('/remove', (req, res) => {
-      res.send('remove');
-    });
-
-    app.get('/metadata', (req, res) => {
-      res.send('metadata');
-    });
-
-    app.get('/thumb', (req, res) => {
-      res.send('thumbnail');
-    });
-
+    app.use('/', router);
     app.listen(port, () => {
       console.log(`SEMS server on port ${port}!`);
     });
