@@ -1,0 +1,1 @@
+export {ifAllConfigOptionsIsNormal} from './ConfigCheker';

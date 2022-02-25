@@ -1,19 +1,41 @@
-const express = require('express'); //express 모듈 가져오기.
-const app = express(); //Express 객체 생성
-const port = 3000; //변수 'port' 선언
+import {ifAllConfigOptionsIsNormal} from './runtime';
+import {ConfigType} from './type';
 
-//route
-app.get('/', (req, res) => {
-  res.send('Hello Express!');
-});
+const path = require('path');
+const express = require('express');
 
-app.get('/profile', (req, res) => {
-  // URL + Callback
-  res.send('Profile page');
-});
+const configPath: string = path.resolve(require.main.path, '..', 'sems.config.js');
+const config: ConfigType = require(configPath);
 
-//port
-app.listen(port, () => {
-  console.log('Express server on port 3000!');
-}); /*위에서 선언한 port변수 , 그리고 요청대기 완료 시 실행 될 콜백함수 지정 -> (()=>{
-    console.log("Express server on port 3000!");*/
+ifAllConfigOptionsIsNormal(config)
+  .then(() => {
+    const app = express();
+    const port = config.server.port || 3000;
+
+    app.post('/upload', (req, res) => {
+      res.send('uplaod');
+    });
+
+    app.get('/download', (req, res) => {
+      res.send('downlaod');
+    });
+
+    app.delete('/remove', (req, res) => {
+      res.send('remove');
+    });
+
+    app.get('/metadata', (req, res) => {
+      res.send('metadata');
+    });
+
+    app.get('/thumb', (req, res) => {
+      res.send('thumbnail');
+    });
+
+    app.listen(port, () => {
+      console.log(`SEMS server on port ${port}!`);
+    });
+  })
+  .catch(e => {
+    console.error(e);
+  });
