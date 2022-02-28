@@ -2,7 +2,7 @@ import path from 'path';
 import express from 'express';
 import {config, ifAllConfigOptionsIsNormal} from './runtime';
 import {ConfigType} from './type';
-import {router} from './route';
+import {appRouter} from './route';
 
 ifAllConfigOptionsIsNormal(config)
   .then(() => {
@@ -10,7 +10,7 @@ ifAllConfigOptionsIsNormal(config)
     const app = express();
     const port = config.server.port || 3000;
 
-    app.use('/', router);
+    app.use('/', appRouter);
     app.set('shared', {
       config,
     });
