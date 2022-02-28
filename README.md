@@ -10,23 +10,23 @@ flowchart TB
         express
     end
     subgraph DB
-        database
+        MongoDB
     end
     subgraph Cache
-        redis
+        Redis
     end
     subgraph Disk
         disk
     end
 
-    express -.-> database
-    database -.-> express
+    express -.-> MongoDB
+    MongoDB -.-> express
 
+    express -.-> Redis
+    Redis -.-> express
     express -.-> disk
     disk -.-> express
 
-    express -.-> redis
-    redis -.-> express
 
   end
 ```
