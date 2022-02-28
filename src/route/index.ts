@@ -5,13 +5,19 @@ import {download} from './download.get';
 import {remove} from './remove.delete';
 import {metadata} from './metadata.get';
 import {thumb} from './thumb.get';
-import multer from 'multer';
+import multer, {Multer} from 'multer';
 import {config} from '../runtime';
 
 const appRouter = Router();
-const appMulter = multer({...config.storage.multer});
 
-appRouter.post('/upload', appMulter.single('image'), upload);
+const appStorage = multer.diskStorage({
+  filename: (req, file, cb) => {
+    cb(null, file.originalname);
+  },
+});
+const appMulter = multer({...config.storage.multer, storage: appStorage});
+
+appRouter.post('/upload', appMulter.single('media'), upload);
 appRouter.get('/download', download);
 appRouter.delete('/remove', remove);
 appRouter.get('/metadata', metadata);

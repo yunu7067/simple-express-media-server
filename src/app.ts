@@ -1,23 +1,21 @@
-import path from 'path';
 import express from 'express';
-import {config, ifAllConfigOptionsIsNormal} from './runtime';
-import {ConfigType} from './type';
+import connectDB from './database/connect';
 import {appRouter} from './route';
+import {config, ifAllConfigOptionsIsNormal} from './runtime';
 
 ifAllConfigOptionsIsNormal(config)
   .then(() => {
-    console.log(__dirname);
+    // console.log(__dirname);
     const app = express();
     const port = config.server.port || 3000;
 
+    connectDB(config.database).catch(error => console.error(error));
+
     app.use('/', appRouter);
-    app.set('shared', {
-      config,
-    });
     app.listen(port, () => {
       console.log(`SEMS server on port ${port}!`);
     });
   })
-  .catch(e => {
-    console.error(e);
+  .catch(error => {
+    console.error(error);
   });

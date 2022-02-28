@@ -9,12 +9,11 @@ interface StorageConfigType {
 }
 
 interface DatabaseConfigType {
-  type: string;
   host: string;
-  port: number;
-  database: string;
-  username: string;
-  password: string;
+  port?: number;
+  database?: string;
+  username?: string;
+  password?: string;
 }
 interface CacheConfigType {
   url: string;
@@ -29,4 +28,4 @@ interface ConfigType {
   storage: StorageConfigType;
 }
 
-export type {ConfigType};
+export type {ConfigType, ServerConfigType, StorageConfigType, DatabaseConfigType, CacheConfigType};

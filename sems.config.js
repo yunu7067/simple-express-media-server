@@ -8,12 +8,7 @@ const semsConfig = {
     port: 3333,
   },
   database: {
-    type: 'mariadb',
-    host: 'localhsot',
-    port: 3306,
-    database: 'db',
-    username: 'root',
-    password: 'root',
+    host: 'mongodb://localhost:27017/test',
   },
   cache: {
     hostname: 'test',

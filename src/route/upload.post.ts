@@ -1,9 +1,21 @@
 import express from 'express';
-import multer from 'multer';
+import {saveDB} from '../database/connect';
+import MediaModel, {MediaType} from '../database/model/MediaModel';
 
-function upload(req: express.Request, res: express.Response) {
-  console.log({file: req.file, body: {...req.body}});
-  res.send('uplaod');
+async function upload(req: express.Request, res: express.Response) {
+  const file = req.file;
+  const body = req.body;
+
+  if (file !== undefined) {
+    const metadata: MediaType = {...file, additional: {...body}};
+
+    const doc = await saveDB(new MediaModel(metadata));
+    console.log({...doc});
+  } else {
+    throw new Error('file not found.');
+  }
+
+  res.send('success');
 }
 
 export {upload};
