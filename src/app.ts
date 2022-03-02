@@ -18,7 +18,7 @@ ifAllConfigOptionsIsNormal(config)
 
     app.use('/', appRouter);
     app.listen(port, () => {
-      console.log(`SEMS server on port ${port}! (http://localhost:3333/)`);
+      console.log(`SEMS server on port ${port}! (http://localhost:${port}/)`);
     });
   })
   .catch(error => {
