@@ -1,9 +1,14 @@
-import {Mongoose, connect, Model, Document, Types} from 'mongoose';
+import mongoose, {Document, Types} from 'mongoose';
 import {DatabaseConfigType} from '../type';
-import MediaModel, {MediaType} from './model/MediaModel';
+import {MediaType} from './model/MediaModel';
 
 async function connectDB(databaseConfig: DatabaseConfigType) {
-  return await connect(databaseConfig.host);
+  try {
+    console.log(databaseConfig.host);
+    return await mongoose.connect(databaseConfig.host, databaseConfig.options);
+  } catch (error) {
+    return Promise.reject(error);
+  }
 }
 
 async function saveDB(doc: Document<unknown, any, MediaType> & MediaType & {_id: Types.ObjectId}) {

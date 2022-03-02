@@ -8,7 +8,11 @@ const semsConfig = {
     port: 3333,
   },
   database: {
-    host: 'mongodb://localhost:27017/test',
+    host: 'mongodb://localhost:27018/test',
+    options: {
+      family: 4,
+      serverSelectionTimeoutMS: 5000,
+    },
   },
   cache: {
     hostname: 'test',

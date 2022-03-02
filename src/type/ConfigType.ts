@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import multer from 'multer';
 
 interface ServerConfigType {
@@ -14,6 +15,7 @@ interface DatabaseConfigType {
   database?: string;
   username?: string;
   password?: string;
+  options?: mongoose.ConnectOptions;
 }
 interface CacheConfigType {
   url: string;

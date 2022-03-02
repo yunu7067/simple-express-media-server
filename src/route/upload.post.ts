@@ -6,16 +6,21 @@ async function upload(req: express.Request, res: express.Response) {
   const file = req.file;
   const body = req.body;
 
-  if (file !== undefined) {
-    const metadata: MediaType = {...file, additional: {...body}};
+  try {
+    if (file !== undefined) {
+      const metadata: MediaType = {...file, additional: {...body}};
 
-    const doc = await saveDB(new MediaModel(metadata));
-    console.log({...doc});
-  } else {
-    throw new Error('file not found.');
+      const doc = await saveDB(new MediaModel(metadata));
+      console.log({...doc});
+    } else {
+      throw new Error('file not found.');
+    }
+
+    res.send('success');
+  } catch (e) {
+    console.error(e);
+    throw new Error('error.');
   }
-
-  res.send('success');
 }
 
 export {upload};
